@@ -12,9 +12,17 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Campus Lost & Found API")
 
+# CORS configuration for both local testing and Vercel deployment
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5173",
+        "https://*.vercel.app",
+        "*",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -31,3 +39,11 @@ app.include_router(items_router, prefix="/api")
 @app.get("/")
 def root():
     return {"message": "Campus Lost & Found API is running"}
+
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "OK",
+        "message": "Backend is running successfully"
+    }

@@ -1,8 +1,8 @@
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
-pymysql
 python-dotenv
 pydantic
 python-multipart
 gunicorn
+aiofiles
