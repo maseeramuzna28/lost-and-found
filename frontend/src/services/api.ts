@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000/api'
+const BASE_URL = 'https://lost-and-found-2-ulzo.onrender.com'
 
 export interface Item {
   id: number
@@ -79,6 +79,6 @@ export async function claimItem(id: number): Promise<Item> {
 
 export function imageUrl(path: string | null | undefined): string | undefined {
   if (!path) return undefined
-  return `http://localhost:8000${path}`
+  return `https://lost-and-found-2-ulzo.onrender.com${path}`
 }
 
