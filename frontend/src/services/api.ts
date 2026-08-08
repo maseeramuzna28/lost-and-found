@@ -1,4 +1,7 @@
-const BASE_URL = 'https://lost-and-found-2-u1zo.onrender.com/api'
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://lost-and-found-2-u1zo.onrender.com/api'
+
+// Root URL for serving uploaded images (strip /api suffix)
+const ROOT_URL = BASE_URL.replace(/\/api$/, '')
 
 export interface Item {
   id: number
@@ -79,6 +82,5 @@ export async function claimItem(id: number): Promise<Item> {
 
 export function imageUrl(path: string | null | undefined): string | undefined {
   if (!path) return undefined
-  return `https://lost-and-found-2-u1zo.onrender.com${path}`
+  return `${ROOT_URL}${path}`
 }
-
